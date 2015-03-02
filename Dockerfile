@@ -22,6 +22,10 @@ ENV LC_ALL en_US.UTF-8
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-security multiverse" >> /etc/apt/sources.list
 RUN echo "deb-src http://archive.ubuntu.com/ubuntu trusty-security multiverse" >> /etc/apt/sources.list
 
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN apt-get -y install wget
+
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -32,7 +36,7 @@ RUN apt-get install -y build-essential git
 RUN apt-get install -y python-software-properties software-properties-common
 
 RUN apt-get install -y postgresql-9.4 postgresql-client-9.4 postgresql-contrib-9.4 libpq-dev libssl-dev
-RUN apt-get install -y wget pgtune apg
+RUN apt-get install -y pgtune apg
 
 VOLUME ["/data"]
 
